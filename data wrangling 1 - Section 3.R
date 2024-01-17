@@ -19,6 +19,14 @@ df %>%
 # mass > 50, 
 # arrange by mass
 # note: filtering on some logical excludes NAs
+answer_obj_name <- df %>% 
+  filter(height > 100,
+         sex == 'female') %>% 
+  select(name, height, mass, species, films) %>% 
+  filter(mass > 50 | mass < 40) %>% 
+  arrange(mass)
+
+df %>% glimpse()
 
 answer_obj_name <- df %>% 
   filter(height > 100,
@@ -30,7 +38,7 @@ answer_obj_name <- df %>%
 
 df
 
-# calculate a new column,weight_lbs = mass * 2.204623
+# calculate a new column, weight_lbs = mass * 2.204623
 # Make sure it gets saved to the tibble...
 
 df <- df %>% 
@@ -65,6 +73,13 @@ df %>%
 
 
 # top 5 tallest overall - using slice_head
+df %>% 
+  arrange(desc(height)) %>% 
+  slice_head(n = 5)
+  
+df %>% 
+  slice_max(mass, n = 5)
+
 
 df %>% 
   arrange(desc(height)) %>% 
@@ -77,6 +92,9 @@ df %>%
 
 
 # what is the shortest character for each species? 
+df %>% 
+  group_by(species) %>% 
+  slice_min(height, with_ties = F)
 
 df %>% 
   group_by(species) %>% 
