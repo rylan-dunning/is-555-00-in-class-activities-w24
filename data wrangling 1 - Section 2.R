@@ -43,6 +43,27 @@ df %>%
   filter(species == 'Chagrian')
 
 
+df %>% 
+  arrange(desc(height)) %>% 
+  slice_tail(n=3)
+
+df %>% 
+  slice_min(height, n = 3)
+
+df %>% 
+  slice_min(eye_color, n = 3)
+
+df %>% 
+  slice_min(mass, n = 4) #getting back 5 rather than 4
+
+df %>% 
+  slice_sample(n=10) #slice_sample is random
+
+df %>% 
+  slice_sample(prop = .1) #10 percent of the data
+
+
+
 # Lots of NAs for average... why? Even for large groups it's NA...
 
 
@@ -64,6 +85,25 @@ df %>%
 
 # what is the shortest character for each species? 
 
+df
+
+df %>% 
+  group_by(species) %>% 
+  slice_max(height)
+
+df %>% 
+  group_by(species) %>% 
+  slice_min(height, with_ties = F)
+
+df %>% filter(height == 150)
+
+df %>% 
+  count(height, sort = T)
+
+df %>% 
+  group_by(species) %>% 
+  slice_max(species_count = n())
+
 
 
 
@@ -78,8 +118,16 @@ df %>%
 # Grouping by multiple
 # Was is the average birth year for each gender from each homeworld
 
+df %>% 
+  group_by(homeworld, gender) %>% 
+  summarize(count = n(),
+            avg_birth_year = mean(birth_year, na.rm = T))
 
-
+df %>% 
+  group_by(species) %>% 
+  slice_min(mass, n = 1, with_ties = F) %>% 
+  group_by(sex) %>% 
+  summarize(avg_height = mean(height, na.rm = T))
 
 
 
