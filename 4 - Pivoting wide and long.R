@@ -146,7 +146,12 @@ bob <- read_csv('https://www.dropbox.com/s/mozqpceit51hia7/bob_ross.csv?dl=1')
 # what is the most common income bracket for each religion?
 
 
-
+ri %>% 
+  pivot_longer(
+    cols = !religion,
+    names_to = 'income_bracket',
+    values_to = 'house'
+  )
 
 # IMPORTANT: Notice how EASY it is to find the top income for each religion because
 # of the tidying of the data we've done. It's a simple filter, rather than a 
@@ -162,7 +167,21 @@ ri %>%
   slice_max(household_count, with_ties = F)
 
 
+bnames %>% 
+  pivot_wider(
+    names_from = 'name',
+    values_from = 'n'
+  )
 
+bnames %>% 
+  pivot_wider(
+    names_from = 'year',
+    values_from = n
+  )
 
-
+bnames %>% 
+  pivot_wider(
+    names_from = c(year,sex),
+    values_from = n
+  )
 
