@@ -185,3 +185,44 @@ bnames %>%
     values_from = n
   )
 
+# ----------------------------------Bob---------------------------------------
+
+bob_long <- bob %>% 
+  pivot_longer(
+    cols = !1:4,
+    names_to = 'object',
+    values_to = 'in_painting'
+  )
+
+#which objects occur most frequently?
+
+bob_long %>% 
+  filter(in_painting == 1) %>% 
+  group_by(object) %>% 
+  summarize(object_count = n()) %>% 
+  arrange(desc(object_count))
+
+#what was the season where bob painted the most mountains?
+
+bob_long %>% 
+  filter(str_detect(object, 'mountain')) %>% 
+  group_by(season) %>% 
+  summarize(mtn_count = sum(in_painting == 1 & str_detect(object, 'mountain'))) %>% 
+  arrange(desc(mtn_count))
+
+bob_long %>% 
+  select(season, object, in_painting) %>% 
+  group_by(season, object) %>%
+  summarize(count = sum(in_painting == 1)) %>% 
+  pivot_wider(
+    names_from = 'season',
+    values_from = 'count'
+  )
+
+songs
+
+
+
+
+
+
