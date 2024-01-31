@@ -219,9 +219,15 @@ bob_long %>%
     values_from = 'count'
   )
 
-songs
+songs <- read_csv('https://www.dropbox.com/s/85j3vgp7165i1xr/song_chart.csv?dl=1')
 
-
+songs %>% 
+  pivot_longer(
+    cols = starts_with('wk'),
+    names_to = 'week',
+    values_to = 'rank'
+  ) %>% 
+  filter(!is.na(rank))
 
 
 
