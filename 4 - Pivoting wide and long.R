@@ -146,12 +146,18 @@ bob <- read_csv('https://www.dropbox.com/s/mozqpceit51hia7/bob_ross.csv?dl=1')
 # what is the most common income bracket for each religion?
 
 
+<<<<<<< HEAD
 ri %>% 
   pivot_longer(
     cols = !religion,
     names_to = 'income_bracket',
     values_to = 'house'
   )
+=======
+bob %>% 
+  glimpse
+
+>>>>>>> fd9bed3ac24813e6f7fb3f90eb719985fa402b03
 
 # IMPORTANT: Notice how EASY it is to find the top income for each religion because
 # of the tidying of the data we've done. It's a simple filter, rather than a 
@@ -228,6 +234,56 @@ songs %>%
     values_to = 'rank'
   ) %>% 
   filter(!is.na(rank))
+
+
+
+# which objects occur most frequently?
+
+
+
+# What was the season when Bob painted the most mountains?
+
+
+
+#  How do the episodes compare in terms of the variety of objects included?
+
+
+# Has the variety of objects changed over the 30 seasons?
+
+
+# Create a table that displays one line per attribute with a count of times that 
+# object was used in each season (one column per season)
+
+
+
+
+
+
+
+
+
+
+a
+
+
+
+
+
+
+songs <- read_csv('https://www.dropbox.com/s/85j3vgp7165i1xr/song_chart.csv?dl=1')
+
+
+songs %>% 
+  pivot_longer(
+    cols = starts_with('wk'),
+    names_to = 'week',
+    values_to = 'rank'
+  ) %>% 
+  filter(!is.na(rank)) %>% 
+  filter(week == 'wk1')
+
+
+
 
 
 
